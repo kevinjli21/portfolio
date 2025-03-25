@@ -173,11 +173,9 @@ a:hover {
 
 section {
     padding-top: 4vh;
-    height: 96vh;
+    min-height: 96vh; /* changed from height to min-height */
     margin: 0 5vw;
     box-sizing: border-box;
-    min-height: fit-content;
-
 }
 
 .section-container {
@@ -187,9 +185,10 @@ section {
 #profile {
     display: flex;
     justify-content: center;
-    gap: 5rem;
-    height: 80vh;
+    gap: 2rem; /* reduced from 5rem */
+    height: auto; /* changed from fixed height */
     position: relative;
+    flex-wrap: wrap; /* allows items to wrap on small screens */
 }
 
 .section__pic-container {
@@ -432,9 +431,10 @@ article .icon {
 }
 
 .project-box {
-    width: 30%; /* Makes the box take about 1/3 of the container */
-    max-width: 400px; /* Optional: Limits how wide the box can get */
-    min-width: 20rem; /* Optional: Ensures it doesn't get too small on smaller screens */
+    /* Make project boxes more responsive */
+    width: 100%; /* changed from 30% */
+    max-width: 400px;
+    min-width: unset; /* removed fixed min-width */
     background-color: white;
     border-radius: 12px;
     padding: 20px;

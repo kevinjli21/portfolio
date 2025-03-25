@@ -5,4 +5,26 @@
     #burger-nav {
         display: flex;
     }
+    .section-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .section__text {
+        padding: 0 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        font-size: 1.2rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .bio-text {
+        font-size: 1rem;
+    }
 }

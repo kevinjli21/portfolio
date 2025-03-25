@@ -193,11 +193,23 @@ section {
 
 .section__pic-container {
     display: flex;
-    height: 400px;
-    width: 400px;
-    margin: auto 0;
-
+    height: 35vmin; /* Responsive units (scales with viewport) */
+    width: 35vmin;  /* Maintains square aspect ratio */
+    min-height: 250px; /* Minimum size (adjust as needed) */
+    min-width: 250px;  /* Prevents it from getting too small */
+    margin: auto 0;    /* Centers vertically in flex container */
+    align-items: center;
+    justify-content: center;
 }
+
+
+.section__pic-container img {
+    width: 100%;      /* Fills container */
+    height: 100%;     /* Ensures no stretching */
+    object-fit: cover; /* Keeps aspect ratio (crops if needed) */
+    border-radius: 2rem; /* Optional: match your design */
+}
+
 
 .section__text {
     align-self: center;

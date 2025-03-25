@@ -126,6 +126,7 @@ a:hover {
     max-height: 0;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
+    z-index: 9999;
 }
 
 .menu-links a {

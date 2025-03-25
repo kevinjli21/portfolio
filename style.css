@@ -464,8 +464,8 @@ article .icon {
 }
 
 .project-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: clamp(1.2rem, 4vw, 1.8rem); /* Responsive title */
+    margin-bottom: 1rem;
     color: #333;
 }
 
@@ -473,7 +473,7 @@ article .icon {
     list-style-type: disc;
     text-align: left;
     margin-top: 10px;
-    padding-left: 20px;
+    padding-left: 1rem;
     color: #555;
     max-width: 350px; /* Make the container narrower */
     margin: 0 auto; /* Center it if needed */
@@ -490,10 +490,11 @@ article .icon {
 }
 
 .project-details li {
-    font-size: 1.2rem; /* Increase font size */
-    line-height: 1.8; /* Add more line spacing */
-    margin-bottom: 0.8rem; /* Add space between list items */
-    color: black; /* Set font color to black */
+    font-size: clamp(0.9rem, 3vw, 1.1rem); /* Responsive text */
+    line-height: 1.5; /* Better spacing */
+    margin-bottom: 0.8rem;
+    word-break: break-word; /* Prevent long words from overflowing */
+    color: black;
 }
 
 .arrow-container {

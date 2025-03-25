@@ -93,6 +93,7 @@ a:hover {
 /* BURGER MENU */
 #burger-nav {
     display: none;
+    z-index: 9999; /* Or any high number */
 }
 
 .burger-menu {

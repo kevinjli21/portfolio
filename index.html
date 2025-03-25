@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+
+</head>
+<body>
+    <nav id="desktop-nav">
+        <div class="logo">Kevin Li</div>
+        <div>
+            <ul class="nav-links">
+                <li><a class="link" href="#about">About</a></li>
+                <li><a class="link" href="#experience">Experience</a></li>
+                <li><a class="link" href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav id="burger-nav">
+        <div class="logo">Kevin Li</div>
+        <div class="burger-menu">
+            <div class="burger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </div>
+        </div>
+    </nav>
+    <section id="profile">
+        <div class="section__pic-container">
+            <img src="./assets/profile-pic.png" alt="Kevin Li Profile Picture"/>
+        </div>
+        <div class="section__text">
+            <p class="section__text__p1">Hello, I'm</p>
+            <h1 class="title">Kevin Li</h1>
+            <p class="section__text__p2">University Student and Aspiring Developer</p>
+            <div class="btn-container">
+                <button class="btn btn-color-1" onclick="window.open('./assets/kevin-li-resume-v0.pdf')">
+                    Download Resume
+                </button>
+            </div>
+            <div id="socials-container">
+                <img src="./assets/linkedin.png" alt="LinkedIn" class="icon" onclick="openLinkedIn()">
+                <img src="./assets/github.png" alt="GitHub" class="icon" onclick="openGitHub()">
+                <img src="./assets/email.png" alt="Email" class="icon icon-large" onclick="window.location.href='mailto:kli21@uw.edu';">           
+            </div>
+        </div>
+        <div class="arrow-container">
+            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='#about'">
+            <span class="arrow-text">About Me</span>
+        </div>
+
+    </section>
+    <section id="about">
+        <p class="section__text__p1">Here are some details...</p>
+        <h1 class ="title">About Me</h1>
+        <div class="section-container">
+            <div class="section__pic-container">
+                <img src="./assets/about-pic.jpg"
+                alt="Profile picture"
+                class="about-pic">
+            </div>
+            <div class="about-details-container">
+                <div class="about-containers">
+                    <div class="details-container">
+                        <img src="./assets/education.png" alt="education icon" class="icon">
+                        <h3 class="blaktext">Education</h3>
+                        <p class="blaktext">University of Washington Bothell<br>Pursuing a B.S. in Computer Science & Software Engineering</p>
+                    </div>
+                    <div class="details-container">
+                        <img src="./assets/hobbies.png" alt="hobbies icon" class="icon">
+                        <h3 class="blaktext">Hobbies</h3>
+                        <p class="blaktext">Basketball<br>Video Games<br>Hanging out with friends and family</p>
+                    </div>
+                </div>
+                <div class="text-container">
+                    <h3 class="title">Hello!</h3>
+                    <p class="bio-text">My name is Kevin (he/him) and I am currently a junior at the University of Washington - Bothell.
+                        I'm from Honolulu, HI but am now living in Seattle, WA.
+                        I am currently looking for opportunities to expand my skill set in development, and am super interested in the future
+                        of technology in areas like machine learning and artificial intelligence, as well as spreading that knowledge through
+                        the education of computing and mathematics topics.
+                        <br> <br> Feel free to reach out to me at:&nbsp;&nbsp;&nbsp;<span class=email><a href="mailto:youremail@example.com" class="email">kli21@uw.edu</a></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="arrow-container">
+            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='#experience'">
+            <span class="arrow-text">Experience</span>
+        </div>
+    </section>
+    <section id="experience">
+        <p class="section__text__p1">Here are some of my...</p>
+        <h1 class="title">Skills and Coursework</h1>
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container">
+                    <h2 class="experience-sub-title">Technical Skills</h2>
+                    <div class="article-container">
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">C++</h3>
+                                <p class="blaktext">Experienced</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Java</h3>
+                                <p class="blaktext">Experienced</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">HTML</h3>
+                                <p class="blaktext">Intermediate</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Python</h3>
+                                <p class="blaktext">Intermediate</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Linux</h3>
+                                <p class="blaktext">Intermediate</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">SQL</h3>
+                                <p class="blaktext">Beginner</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Git</h3>
+                                <p class="blaktext">Beginner</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Technical Documents</h3>
+                                <p class="blaktext">Intermediate</p>
+                            </div>
+                        </article>
+                        
+                    </div>
+                </div>
+                <div class="details-container">
+                    <h2 class="experience-sub-title">Coursework</h2>
+                    <div class="article-container">
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Data Structures, Algorithms & Discrete Math I</h3>
+                                <p class="blaktext">CSS 342 @ UW Bothell</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Data Structures, Algorithms, & Discrete Math II </h3>
+                                <p class="blaktext">CSS 343 @ UW Bothell</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Software Engineering</h3>
+                                <p class="blaktext">CSS 360 @ UW Bothell</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Technical Writing</h3>
+                                <p class="blaktext">CSS 301 @ UW Bothell</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Hardware and Computer Organization</h3>
+                                <p class="blaktext">CSS 422 - In Progress @ UW Bothell </p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Database Systems</h3>
+                                <p class="blaktext">CSE 414 @ UW Seattle </p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Management Principles for Computing Professionals</h3>
+                                <p class="blaktext">CSS 350 - In Progress @ UW Bothell </p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
+                            <div>
+                                <h3 class="blaktext">Elements of Statistical Methods</h3>
+                                <p class="blaktext">STAT 311 @ UW Seattle </p>
+                            </div>
+                        </article>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="arrow-container">
+            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='#projects'">
+            <span class="arrow-text">Projects</span>
+        </div>
+    </section>
+    <section id="projects">
+        <p class="section__text__p1">Here are some of my...</p>
+        <h1 class="title">Projects</h1>
+        <div class="experience-details-container">
+            <div class="details-container color-container">
+                <div class="project-article-container">
+                        <h3 class="project-title">Movie Rental System</h3>
+                        <ul class="project-details">
+                            <li>Use OOP and inheritance to store movie items</li>
+                            <li>Stores movies in custom hash tables</li>
+                            <li>Fast search and retrieval using custom hash function</li>
+                            <li>Supports multiple genres and user transactions</li>
+                        </ul>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/kevinjli21/movierentalsystem'">
+                        GitHub
+                    </button>
+                </div>
+            </div>
+            <div class="details-container color-container">
+                <div class="project-article-container">
+                        <h3 class="project-title">This Portfolio!</h3>
+                        <ul class="project-details">
+                            <li>Using HTML, CSS, JavaScript</li>
+                            <li>Customizable and able to add future details</li>
+                            <li>User-friendly interface and feel</li>
+                        </ul>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/kevinjli21/movierentalsystem'">
+                        GitHub
+                    </button>
+                </div>
+            </div>
+            <div class="details-container color-container">
+                <div class="project-article-container">
+                        <h3 class="project-title">In progress...</h3>
+                        <!-- <ul class="project-details">
+                            <li>Stores movies in a single hash table</li>
+                            <li>Fast search and retrieval using custom hash function</li>
+                            <li>Supports multiple genres and user-friendly interface</li>
+                        </ul> -->
+                </div>
+                <!-- <div class="btn-container">
+                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/kevinjli21/movierentalsystem'">
+                        GitHub
+                    </button>
+                </div> -->
+            </div>
+        </div>
+        <div class="arrow-container">
+            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow-up" onclick="location.href='#desktop-nav'">
+            <span class="arrow-text">Back to Top</span>
+        </div>
+        
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

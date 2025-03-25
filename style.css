@@ -57,7 +57,7 @@ nav, .nav-links {
 nav {
     justify-content: space-around;
     align-items: center;
-    height: 17vh;
+    height: 10vh;
 }
 
 .nav-links {
@@ -220,9 +220,10 @@ section {
 }
 
 .title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
     margin-bottom: 1rem;
     text-align: center;
+    padding: 0 1rem; /* Prevent edge sticking */
 }
 
 #socials-container {
@@ -309,6 +310,10 @@ section {
 .about-details-container {
     justify-content: center;
     flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .about-containers, .about-details-container {
@@ -336,6 +341,17 @@ section {
     text-align: center;
     max-width: 900px;
     max-height: 600px;
+    overflow-y: auto; /* Add this to handle overflow */
+    word-wrap: break-word; /* Prevent long words from overflowing */
+}
+
+.color-container {
+    padding: 1.5rem;
+    border-radius: 2rem;
+    border: rgb(53, 53, 53) 0.1rem solid;
+    text-align: center;
+    max-width: 100%; /* Ensure it doesn't overflow */
+    width: 100%;
 }
 
 .section-container {
@@ -391,8 +407,9 @@ section {
 .experience-sub-title {
     color: rgb(85, 85, 85);
     font-weight: 600;
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
+    font-size: clamp(1.3rem, 3vw, 1.75rem); /* Responsive font size */
+    margin-bottom: 1.5rem;
+    padding: 0 1rem; /* Add padding */
 }
 
 .experience-details-container {
@@ -402,7 +419,9 @@ section {
     justify-content: center;
     align-items: stretch;
     margin-top: 2rem;
+    width: 100%; /* Ensure it doesn't exceed parent width */
 }
+
 
 .article-container {
     display: flex;
@@ -415,8 +434,10 @@ section {
 
 article {
     display: flex;
-    width: 20rem;
+    width: 100%; /* Changed from fixed 20rem */
+    max-width: 20rem; /* Maximum width */
     gap: 1rem;
+    flex: 1 1 300px; /* Flexible sizing */
 }
 
 article .icon {
@@ -428,23 +449,6 @@ article .icon {
 #projects {
     position: relative;  /* Make sure the section is a positioning context for the arrow */
     min-height: 100vh;   /* Ensure the section takes up at least the full viewport height */
-}
-
-.project-box {
-    /* Make project boxes more responsive */
-    width: 100%; /* changed from 30% */
-    max-width: 400px;
-    min-width: unset; /* removed fixed min-width */
-    background-color: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.2s ease-in-out;
-}
-
-.project-box:hover {
-    transform: translateY(-5px);
 }
 
 .project-title {
@@ -467,10 +471,10 @@ article .icon {
     display: flex;
     text-align: initial;
     flex-wrap: wrap;
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: space-around;
-    height: 500px
+    gap: 1rem;
+    justify-content: center;
+    height: auto; /* Changed from fixed height */
+    padding: 1rem;
 }
 
 .project-details li {

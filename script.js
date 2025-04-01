@@ -10,6 +10,10 @@ function openLinkedIn() {
     window.open("https://www.linkedin.com/in/li-kevin-j/", "_blank");
 }
 
+function openLeetCode() {
+    window.open("https://leetcode.com/u/kevinjli1123/", "_blank");
+}
+
 function openGitHub() {
     window.open("https://github.com/kevinjli21", "_blank");
 }

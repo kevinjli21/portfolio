@@ -2,6 +2,6 @@
 
 using html, css, and javascript
 
-NOT MOBILE FRIENDLY UNFORTUNATELY
+now mobile friendly! -kinda
 
 kevinjli21.github.io/portfolio

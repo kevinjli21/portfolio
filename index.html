@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kevin Li</title>
-<meta name="description" content="Kevin Li is a software engineer in Seattle and a UW Bothell Computer Science and Software Engineering graduate. Projects, experience, education and contact.">
+<meta name="description" content="Kevin Li is a software engineer based in Hawaii and a UW Bothell Computer Science and Software Engineering graduate. Projects, experience, education and contact.">
 <link rel="icon" href="assets/headshot.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,6 +179,8 @@ h3 { font-family: var(--display); font-weight: 700; font-stretch: 112%; font-siz
 .hobby .tag { font-family: var(--mono); font-size: 0.74rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
 
 /* Contact */
+.help-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 4px 0 18px; list-style: none; }
+.help-list li { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 0.95rem; }
 .contact h2 { font-size: clamp(1.8rem, 5vw, 3rem); }
 .contact-rows { display: grid; gap: 10px; margin-top: 8px; }
 .contact-row { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
@@ -201,6 +203,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--mono); font-size: 0.
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#about">About</a>
+      <a href="#tech-help">Tech help</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -210,7 +213,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--mono); font-size: 0.
   <div class="hero wrap">
     <div class="hero-text">
     <div class="eyebrow">
-      <span>Software engineer</span><span class="dot">/</span><span>From Hawaii, based in Seattle</span><span class="dot">/</span><span>UW Bothell CSSE '26</span>
+      <span>Software engineer</span><span class="dot">/</span><span>Based in Hawaii, open to relocating</span><span class="dot">/</span><span>UW Bothell CSSE '26</span>
     </div>
     <h1>Kevin Li</h1>
     <p class="lede">I build full-stack web and mobile apps, and I like finding out <em>why things break</em>, whether that's a production bug, a Docker container stuck in a restart loop, or something on my desk.</p>
@@ -399,7 +402,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--mono); font-size: 0.
         <h2 id="about-h">About me</h2>
         <div class="about-grid">
         <div class="prose">
-          <p>I grew up in Hawaii and now live in Seattle. I got into programming because writing a program feels a lot like solving a puzzle. I love working out a solution to a hard problem, especially when it pushes me to think outside the box.</p>
+          <p>I grew up in Hawaii and I'm based there now, and I'm open to relocating for the right role. I got into programming because writing a program feels a lot like solving a puzzle. I love working out a solution to a hard problem, especially when it pushes me to think outside the box.</p>
           <p>I'm looking for full-stack engineering roles, and I'm also open to backend, IT and technical consulting work.</p>
         </div>
         <img class="about-photo" src="assets/about.jpg" width="900" height="900" alt="Kevin mid-jump in a mirrored hexagon-patterned room" loading="lazy">
@@ -426,6 +429,23 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--mono); font-size: 0.
     </div>
   </section>
 
+  <section class="block" id="tech-help" aria-labelledby="help-h">
+    <div class="wrap">
+      <p class="label">Local tech help</p>
+      <div class="content prose">
+        <h2 id="help-h">Need a hand with your tech?</h2>
+        <p>If you live near me (in Hawaii for now) and something on your computer isn't working right, send me a message. I'm happy to take a look at small jobs like these:</p>
+        <ul class="help-list">
+          <li>Slow or aging computers</li>
+          <li>Small software and setup issues</li>
+          <li>Is my old computer worth keeping?</li>
+          <li>Digitizing VHS tapes and DVDs</li>
+        </ul>
+        <p class="muted">Email me at <a href="mailto:kevjaredli@gmail.com">kevjaredli@gmail.com</a> with what's going on, and I'll let you know what I can do.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="block contact" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <p class="label">Contact</p>
@@ -445,7 +465,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--mono); font-size: 0.
 </main>
 
 <footer>
-  <div class="wrap"><span>© 2026 Kevin Li</span><span>Seattle, WA</span></div>
+  <div class="wrap"><span>© 2026 Kevin Li</span><span>Hawaii · Open to relocation</span></div>
 </footer>
 
 <script>

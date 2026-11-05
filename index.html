@@ -1,351 +1,469 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mediaqueries.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kevin Li</title>
+<meta name="description" content="Kevin Li is a software engineer in Seattle and a UW Bothell Computer Science and Software Engineering graduate. Projects, experience, education and contact.">
+<link rel="icon" href="assets/headshot.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;112,700;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one left-aligned reading column; each section is a label rail + content, stacking to one column on phones. */
+:root {
+  --bg: #f2f3f1;
+  --surface: #ffffff;
+  --ink: #15181b;
+  --muted: #59606a;
+  --line: #d6d9d5;
+  --accent: #c8102e;
+  --accent-soft: #c8102e14;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111315; --surface: #1a1d20; --ink: #eceeec; --muted: #9ba2aa;
+    --line: #2b3034; --accent: #ff5466; --accent-soft: #ff546618; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111315; --surface: #1a1d20; --ink: #eceeec; --muted: #9ba2aa;
+  --line: #2b3034; --accent: #ff5466; --accent-soft: #ff546618; color-scheme: dark;
+}
 
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); }
+}
+
+/* Top bar */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.mark { font-family: var(--display); font-weight: 800; font-stretch: 112%; letter-spacing: -0.01em; text-decoration: none; }
+.mark span { color: var(--accent); }
+.nav { display: flex; gap: 20px; font-size: 0.875rem; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+@media (max-width: 640px) { .nav { display: none; } }
+
+/* Hero */
+.hero { padding-block: 64px 56px; display: grid; gap: 32px; align-items: center; }
+@media (min-width: 820px) { .hero { grid-template-columns: minmax(0, 1fr) auto; gap: 56px; } }
+.hero-text { min-width: 0; }
+.portrait { width: clamp(120px, 26vw, 280px); height: auto; max-width: 100%; aspect-ratio: 1; border-radius: 50%; display: block; order: -1; }
+@media (min-width: 820px) { .portrait { order: 0; } }
+.about-grid { display: grid; gap: 28px; align-items: start; }
+@media (min-width: 760px) { .about-grid { grid-template-columns: minmax(0, 1fr) 15rem; gap: 40px; } }
+.about-photo { width: 100%; height: auto; max-width: 20rem; aspect-ratio: 1; object-fit: cover; border-radius: 8px; display: block; }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 14px;
+}
+.eyebrow .dot { color: var(--accent); }
+h1 {
+  font-family: var(--display); font-weight: 800; font-stretch: 112%;
+  font-size: clamp(2.6rem, 8vw, 5.2rem); line-height: 0.98; letter-spacing: -0.03em;
+  margin: 20px 0 0; text-wrap: balance;
+}
+.lede { font-size: clamp(1.1rem, 2.2vw, 1.35rem); line-height: 1.5; max-width: 36ch; margin: 24px 0 0; color: var(--ink); text-wrap: pretty; }
+.lede em { font-style: normal; color: var(--accent); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px;
+  border: 1px solid var(--ink); border-radius: 999px; text-decoration: none;
+  font-weight: 500; font-size: 0.95rem; background: transparent; color: var(--ink); cursor: pointer; font-family: inherit;
+}
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn:hover { border-color: var(--accent); }
+
+/* Sections */
+section.block { border-top: 1px solid var(--line); padding-block: 56px; }
+.block .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+@media (min-width: 860px) { .block .wrap { grid-template-columns: 12rem minmax(0, 1fr); gap: 40px; } }
+.label {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  margin: 6px 0 0;
+}
+h2 { font-family: var(--display); font-weight: 700; font-stretch: 112%; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 16px; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 700; font-stretch: 112%; font-size: 1.2rem; line-height: 1.25; margin: 0; letter-spacing: -0.01em; }
+.prose { max-width: 62ch; }
+.prose p { margin: 0 0 14px; }
+.muted { color: var(--muted); }
+.content { min-width: 0; }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+.proj > div { min-width: 0; }
+.proj { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; padding-block: 28px; border-bottom: 1px solid var(--line); }
+.proj:first-child { padding-top: 4px; }
+.proj:last-child { border-bottom: 0; }
+@media (min-width: 700px) { .proj { grid-template-columns: 9rem minmax(0, 1fr); gap: 28px; } }
+.proj .when { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.proj .when b { display: block; font-weight: 500; color: var(--accent); }
+.proj p { margin: 8px 0 0; max-width: 62ch; }
+.proj ul { margin: 10px 0 0; padding-left: 1.1em; max-width: 62ch; }
+.proj li { margin: 4px 0; }
+.proj li::marker { color: var(--accent); }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding: 0; list-style: none; }
+.stack li { font-family: var(--mono); font-size: 0.74rem; padding: 2px 8px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); margin: 0; }
+.proj .link { font-family: var(--mono); font-size: 0.82rem; display: inline-block; margin-top: 12px; }
+.proj.featured h3 { font-size: 1.45rem; }
+
+/* Spec readout for the homelab */
+.spec {
+  margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 1px;
+  background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; max-width: 40rem;
+}
+.spec div { background: var(--surface); padding: 10px 12px; }
+.spec dt { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.spec dd { margin: 2px 0 0; font-family: var(--mono); font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+
+/* Experience */
+.role { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
+.role .when { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+
+/* Education journey */
+.journey { display: grid; gap: 28px; }
+.school { display: grid; gap: 6px; }
+.school .meta { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.quarters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding: 0; list-style: none; }
+.quarters li {
+  font-family: var(--mono); font-size: 0.74rem; padding: 3px 8px; border-radius: 4px;
+  background: var(--accent-soft); color: var(--ink); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.coursework { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 10px 0 0; list-style: none; font-size: 0.95rem; }
+
+/* Skills */
+.skills { display: grid; gap: 18px; margin: 0; }
+.skills > div { display: grid; grid-template-columns: 1fr; gap: 4px; }
+@media (min-width: 700px) { .skills > div { grid-template-columns: 9rem minmax(0, 1fr); gap: 28px; } }
+.skills dt { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; }
+.skills dd { margin: 0; }
+
+/* Off the clock */
+.hobbies { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 28px; }
+.hobby h3 { font-size: 1.05rem; }
+.hobby p { margin: 6px 0 0; }
+.hobby .tag { font-family: var(--mono); font-size: 0.74rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Contact */
+.contact h2 { font-size: clamp(1.8rem, 5vw, 3rem); }
+.contact-rows { display: grid; gap: 10px; margin-top: 8px; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.contact-row .k { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); width: 6rem; }
+.contact-row .v { font-size: 1.05rem; user-select: all; overflow-wrap: anywhere; }
+.copy { font-family: var(--mono); font-size: 0.74rem; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); cursor: pointer; }
+.copy:hover { border-color: var(--accent); }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 24px 40px; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+</style>
 </head>
 <body>
-    <nav id="desktop-nav">
-        <div class="logo">Kevin Li</div>
-        <div>
-            <ul class="nav-links">
-                <li><a class="link" href="#about">About</a></li>
-                <li><a class="link" href="#experience">Experience</a></li>
-                <li><a class="link" href="#projects">Projects</a></li>
-            </ul>
-        </div>
-    </nav>
-    <nav id="burger-nav">
-        <div class="logo">Kevin Li</div>
-        <div class="burger-menu">
-            <div class="burger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-            </div>
-        </div>
-    </nav>
-    <section id="profile">
-        <div class="section__pic-container">
-            <img src="./assets/profile-pic.png" alt="Kevin Li Profile Picture"/>
-        </div>
-        <div class="section__text">
-            <p class="section__text__p1">Hello, I'm</p>
-            <h1 class="title">Kevin Li</h1>
-            <p class="section__text__p2">University Student and Aspiring Developer</p>
-            <div class="btn-container">
-                <button class="btn btn-color-1" onclick="window.open('./assets/Kevin_Li_resume_2026 v1.pdf')">
-                    Download Resume
-                </button>
-            </div>
-            <div id="socials-container">
-                <img src="./assets/linkedin.png" alt="LinkedIn" class="icon" onclick="openLinkedIn()">
-                <img src="./assets/github.png" alt="GitHub" class="icon" onclick="openGitHub()">
-                <img src="./assets/leetcode-modified.png" alt="LeetCode" class="icon" onclick="openLeetCode()">
-                <img src="./assets/email.png" alt="Email" class="icon icon-large" onclick="window.location.href='mailto:kli21@uw.edu';">           
-            </div>
-        </div>
 
-    </section>
-    <section id="about">
-        <p class="section__text__p1">Here are some details...</p>
-        <h1 class ="title">About Me</h1>
-        <div class="section-container">
-            <div class="section__pic-container">
-                <img src="./assets/about-pic.jpg"
-                alt="Profile picture"
-                class="about-pic">
-            </div>
-            <div class="about-details-container">
-                <div class="about-containers">
-                    <div class="details-container">
-                        <img src="./assets/education.png" alt="education icon" class="icon">
-                        <h3 class="blaktext">Education</h3>
-                        <p class="blaktext">University of Washington Bothell<br>Pursuing a B.S. in Computer Science & Software Engineering</p>
-                    </div>
-                    <div class="details-container">
-                        <img src="./assets/hobbies.png" alt="hobbies icon" class="icon">
-                        <h3 class="blaktext">Hobbies</h3>
-                        <p class="blaktext">Basketball<br>Video Games<br>Hanging out with friends and family</p>
-                    </div>
-                </div>
-                <div class="text-container">
-                    <h3 class="title">Hello!</h3>
-                    <p class="bio-text">My name is Kevin (he/him) and I am currently a senior at the University of Washington - Bothell.
-                        I'm from Honolulu, HI but am now living in Seattle, WA.
-                        I am currently looking for opportunities to expand my skill set in development, and am super interested in the future
-                        of technology in areas like cybersecurity, machine learning and artificial intelligence, as well as spreading that knowledge through
-                        the education of computing and mathematics topics.
-                        <br> <br> Feel free to reach out to me at:&nbsp;&nbsp;&nbsp;<span class=email><a href="mailto:youremail@example.com" class="email">kli21@uw.edu</a></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="arrow-container">
-            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='#experience'">
-            <span class="arrow-text">Experience</span>
-        </div>
-    </section>
-    <section id="experience">
-        <p class="section__text__p1">Here are some of my...</p>
-        <h1 class="title">Skills and Coursework</h1>
-        <div class="experience-details-container">
-            <div class="about-containers">
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Technical Skills</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">C++</h3>
-                                <p class="blaktext">Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Java</h3>
-                                <p class="blaktext">Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">HTML</h3>
-                                <p class="blaktext">Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Python</h3>
-                                <p class="blaktext">Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Linux</h3>
-                                <p class="blaktext">Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">SQL</h3>
-                                <p class="blaktext">Beginner</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Git</h3>
-                                <p class="blaktext">Beginner</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Technical Documents</h3>
-                                <p class="blaktext">Intermediate</p>
-                            </div>
-                        </article>
-                        
-                    </div>
-                </div>
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Coursework</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Information Assurance & Cybersecurity</h3>
-                                <p class="blaktext">CSS 310 @ UW Bothell</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Operating Systems</h3>
-                                <p class="blaktext">CSS 430 @ UW Bothell </p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Parallel & Distributed Computer</h3>
-                                <p class="blaktext">CSS 434 @ UW Bothell </p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Secure Systems</h3>
-                                <p class="blaktext">CSS 337 In Progress @ UW Bothell </p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Web Programming & Applications</h3>
-                                <p class="blaktext">CSS 481 In Progress @ UW Bothell</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Analysis & Design</h3>
-                                <p class="blaktext">CSS 370 In Progress @ UW Bothell </p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Data Structures, Algorithms & Discrete Math I</h3>
-                                <p class="blaktext">CSS 342 @ UW Bothell</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Data Structures, Algorithms, & Discrete Math II </h3>
-                                <p class="blaktext">CSS 343 @ UW Bothell</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Software Engineering</h3>
-                                <p class="blaktext">CSS 360 @ UW Bothell</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Technical Writing</h3>
-                                <p class="blaktext">CSS 301 @ UW Bothell</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Hardware and Computer Organization</h3>
-                                <p class="blaktext">CSS 422 @ UW Bothell </p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Database Systems</h3>
-                                <p class="blaktext">CSE 414 @ UW Seattle </p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Management Principles for Computing Professionals</h3>
-                                <p class="blaktext">CSS 350 @ UW Bothell </p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="experience icon" class="icon">
-                            <div>
-                                <h3 class="blaktext">Elements of Statistical Methods</h3>
-                                <p class="blaktext">STAT 311 @ UW Seattle </p>
-                            </div>
-                        </article>
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="arrow-container">
-            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='#projects'">
-            <span class="arrow-text">Projects</span>
-        </div>
-    </section>
-    <section id="projects">
-        <p class="section__text__p1">Here are some of my...</p>
-        <h1 class="title">Projects</h1>
-        <div class="experience-details-container">
-            <div class="details-container color-container">
-                <div class="project-article-container">
-                        <h3 class="project-title">Movie Rental System</h3>
-                        <ul class="project-details">
-                            <li>Use OOP and inheritance to store movie items</li>
-                            <li>Stores movies in custom hash tables</li>
-                            <li>Fast search and retrieval using custom hash function</li>
-                            <li>Supports multiple genres and user transactions</li>
-                        </ul>
-                </div>
-                <div class="btn-container">
-                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/kevinjli21/movierentalsystem'">
-                        GitHub
-                    </button>
-                </div>
-            </div>
-            <div class="details-container color-container">
-                <div class="project-article-container">
-                        <h3 class="project-title">This Portfolio!</h3>
-                        <ul class="project-details">
-                            <li>Using HTML, CSS, JavaScript</li>
-                            <li>Customizable and able to add future details</li>
-                            <li>User-friendly interface and feel</li>
-                        </ul>
-                </div>
-                <div class="btn-container">
-                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/kevinjli21/movierentalsystem'">
-                        GitHub
-                    </button>
-                </div>
-            </div>
-            <div class="details-container color-container">
-                <div class="project-article-container">
-                        <h3 class="project-title">Pokemon Event Database</h3>
-                        <ul class="project-details">
-                            <li>Database revolving around Pokemon card Events</li>
-                            <li>Store card inventory data, user data, and event data</li>
-                            <li>Allows for modification of cards and users</li>
-                        </ul>
-                </div>
-                <div class="btn-container">
-                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/ian-jones3/475FinalProject'">
-                        GitHub
-                    </button>
-                </div>
-                <div class="btn-container">
-                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://students.washington.edu/kli21/dbtest/index.php'">
-                        Website
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="arrow-container">
-            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow-up" onclick="location.href='#desktop-nav'">
-            <span class="arrow-text">Back to Top</span>
-        </div>
-        
-    </section>
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span id="close-popup" class="close-btn">&times;</span>
-            <h2 class="blaktext">I'm still learning web dev...</h2>
-            <br>
-            <p class="blaktext">Please contact me if anything looks strange in your browser.</p>
-            <br>
-            <button id="popup-button">Got it!</button>
-        </div>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Kevin Li<span>.</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero wrap">
+    <div class="hero-text">
+    <div class="eyebrow">
+      <span>Software engineer</span><span class="dot">/</span><span>From Hawaii, based in Seattle</span><span class="dot">/</span><span>UW Bothell CSSE '26</span>
     </div>
-    <script src="script.js"></script>
+    <h1>Kevin Li</h1>
+    <p class="lede">I build full-stack web and mobile apps, and I like finding out <em>why things break</em>, whether that's a production bug, a Docker container stuck in a restart loop, or something on my desk.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">See my work</a>
+      <a class="btn" href="assets/KevinLi_Resume.pdf" download="KevinLi_Resume.pdf">Download résumé</a>
+      <a class="btn" href="https://github.com/kevinjli21" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/li-kevin-j" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://leetcode.com/u/kevinjli1123/" target="_blank" rel="noopener">LeetCode</a>
+    </div>
+    </div>
+    <img class="portrait" src="assets/headshot.webp" width="640" height="640" alt="Portrait of Kevin Li">
+  </div>
+
+  <section class="block" id="projects" aria-labelledby="projects-h">
+    <div class="wrap">
+      <p class="label">Projects</p>
+      <div class="content">
+        <h2 id="projects-h">Things I've built</h2>
+        <div class="projects">
+
+          <article class="proj featured">
+            <div class="when"><b>Senior capstone</b>2025 – 2026</div>
+            <div>
+              <h3>UW Howler</h3>
+              <p>A social platform for UW students that I designed and built on my own, from the database schema to the last button. It has a home feed, profiles, search, a messaging inbox and a landing page, and more than 30 students used it.</p>
+              <ul>
+                <li>Wrote 10+ REST API endpoints in Next.js for posts, follows, search and real-time messaging.</li>
+                <li>Designed a normalized PostgreSQL schema from scratch, with Supabase as the managed backend.</li>
+                <li>Added Google OAuth sign-in restricted to verified UW accounts, plus a server-side moderation step that flags inappropriate posts before they go live.</li>
+                <li>Deployed on Vercel, watched it after launch, fixed issues as they came up, and documented the API and schema.</li>
+              </ul>
+              <ul class="stack"><li>Next.js</li><li>React</li><li>PostgreSQL</li><li>Supabase</li><li>Google Cloud OAuth</li><li>Vercel</li></ul>
+              <a class="link" href="https://howler-teal.vercel.app" target="_blank" rel="noopener">howler-teal.vercel.app ↗</a>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="when">Oct 2026</div>
+            <div>
+              <h3>OCEAN Personality Test</h3>
+              <p>A cross-platform app (iOS, Android and web) that scores Big Five personality tests against norms from about 19,700 real respondents and recommends activities by cosine similarity. I worked on reliability and new features.</p>
+              <ul>
+                <li>Set up a GitHub Actions pipeline that runs tests, type-checking and Expo dependency checks on every pull request.</li>
+                <li>Grew the test suite from 3 files to 5 with 78 passing tests, including a chi-square check that the question shuffle is actually uniform.</li>
+                <li>Hardened on-device storage with schema validation, safe fallbacks and automatic backups, and built save-and-resume for the 50-question test.</li>
+                <li>Tracked down why web users couldn't start a new test (React Native's <code>Alert.alert</code> buttons do nothing on web) and fixed it with a web-specific path.</li>
+              </ul>
+              <ul class="stack"><li>React Native</li><li>TypeScript</li><li>Expo</li><li>GitHub Actions</li></ul>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="when">Oct 2026</div>
+            <div>
+              <h3>Home server</h3>
+              <p>An old laptop turned into an always-on Linux server that I run headless over SSH. It streams my media library, backs up a photo archive every night, and is reachable from anywhere without opening ports to the internet.</p>
+              <dl class="spec">
+                <div><dt>Photos synced</dt><dd>27,596 files</dd></div>
+                <div><dt>Archive size</dt><dd>9.4 GB</dd></div>
+                <div><dt>Ports exposed</dt><dd>80 / 443 only</dd></div>
+                <div><dt>Backups</dt><dd>nightly cron</dd></div>
+              </dl>
+              <ul>
+                <li>Runs Jellyfin with hardware-accelerated transcoding and other services as Docker Compose stacks.</li>
+                <li>Remote access through Tailscale (WireGuard), with a Caddy reverse proxy and automatic HTTPS for the one public service.</li>
+                <li>Least-privilege setup: separate service accounts, read-only media mounts and a UFW firewall.</li>
+                <li>Debugged a lid-close setting that was silently ignored, a container restart loop caused by file ownership, and choppy video traced to the client's codec support.</li>
+              </ul>
+              <ul class="stack"><li>Ubuntu Server</li><li>Docker Compose</li><li>Tailscale</li><li>Caddy</li><li>systemd</li></ul>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="when">2026</div>
+            <div>
+              <h3>AlgoTeach</h3>
+              <p>An AI tutor for algorithms problems. It uses the Gemini API with carefully written system prompts so it guides students toward the answer with hints instead of handing over the solution, and it keeps track of how far along the hints a student is.</p>
+              <ul class="stack"><li>Next.js</li><li>TypeScript</li><li>Gemini API</li></ul>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="when">2025</div>
+            <div>
+              <h3>C standard library in ARM assembly</h3>
+              <p>Core C library string, memory and I/O functions written from scratch in ARM Thumb-2 assembly for Cortex-M microcontrollers, following the ARM calling convention and checked against reference outputs.</p>
+              <ul class="stack"><li>ARM Thumb-2</li><li>Cortex-M</li><li>GCC</li></ul>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="when">2024</div>
+            <div>
+              <h3>Movie rental system</h3>
+              <p>An object-oriented rental store in C++ with a custom hash table for constant-time lookups and a binary search tree for sorted listings. It passed 100% of a comprehensive automated test suite.</p>
+              <ul class="stack"><li>C++</li><li>OOP</li><li>Data structures</li></ul>
+              <a class="link" href="https://github.com/kevinjli21/movierentalsystem" target="_blank" rel="noopener">Source on GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="when">Database Systems</div>
+            <div>
+              <h3>Pok&eacute;mon event database</h3>
+              <p>A team project for managing Pok&eacute;mon card events. It stores card inventory, users and events, and lets organizers add and edit cards and users through a web front end.</p>
+              <ul class="stack"><li>SQL</li><li>PHP</li><li>Team project</li></ul>
+              <a class="link" href="https://students.washington.edu/kli21/dbtest/index.php" target="_blank" rel="noopener">Live site ↗</a>
+              <a class="link" href="https://github.com/ian-jones3/475FinalProject" target="_blank" rel="noopener" style="margin-left:16px">Source on GitHub ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <p class="label">Experience</p>
+      <div class="content prose">
+        <h2 id="exp-h">Work</h2>
+        <div class="role">
+          <h3>Freelance Web Developer, Swift Cleaning</h3>
+          <span class="when">2025 · Remote</span>
+        </div>
+        <ul>
+          <li>Worked directly with the client to gather requirements and turn their business needs into a technical plan.</li>
+          <li>Found and fixed 5 production bugs across the frontend and backend through root-cause analysis, restoring the site to full working order.</li>
+          <li>Shipped and documented the updated site, and explained technical decisions and tradeoffs to a non-technical client throughout.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education" aria-labelledby="edu-h">
+    <div class="wrap">
+      <p class="label">Education</p>
+      <div class="content">
+        <h2 id="edu-h">How I got here</h2>
+        <p class="prose" style="margin:0 0 6px">I started at UW Seattle but didn't get into my major there. I took a break to think about where I wanted my education and career to go, then transferred to UW Bothell, got into Computer Science &amp; Software Engineering and graduated in August 2026. I made the Dean's List in 11 quarters across both schools.</p>
+        <div class="journey">
+          <div class="school">
+            <h3>University of Washington Bothell</h3>
+            <div class="meta">B.S. Computer Science &amp; Software Engineering · GPA 3.69 · Graduated Aug 2026</div>
+            <ul class="quarters" aria-label="Dean's List quarters at UW Bothell">
+              <li>Wi '25</li><li>Sp '25</li><li>Au '25</li><li>Wi '26</li>
+            </ul>
+            <ul class="coursework" aria-label="Relevant coursework">
+              <li>Data Structures &amp; Algorithms</li><li>Operating Systems</li><li>Parallel &amp; Distributed Computing</li><li>Database Systems</li><li>Secure Systems</li><li>Web Programming</li><li>Software Engineering</li><li>Hardware &amp; Computer Organization</li>
+            </ul>
+          </div>
+          <div class="school">
+            <h3>University of Washington Seattle</h3>
+            <div class="meta">2021 – 2023 · Transferred to UW Bothell</div>
+            <ul class="quarters" aria-label="Dean's List quarters at UW Seattle">
+              <li>Au '21</li><li>Wi '22</li><li>Sp '22</li><li>Au '22</li><li>Wi '23</li><li>Sp '23</li><li>Au '23</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <p class="label">Skills</p>
+      <div class="content">
+        <h2 id="skills-h">Tools I work with</h2>
+        <dl class="skills">
+          <div><dt>Languages</dt><dd>TypeScript, JavaScript, Python, Java, C/C++, SQL, ARM Thumb-2 assembly, HTML/CSS</dd></div>
+          <div><dt>Frameworks</dt><dd>React, Next.js, React Native, Expo, Node.js, Express, Socket.io</dd></div>
+          <div><dt>Data &amp; cloud</dt><dd>PostgreSQL, Supabase, MySQL, SQLite, Google Cloud, Vercel, AWS (learning)</dd></div>
+          <div><dt>Systems</dt><dd>Linux (Ubuntu Server), Docker &amp; Compose, systemd, SSH, Tailscale/WireGuard, Caddy</dd></div>
+          <div><dt>Practices</dt><dd>REST API design, schema design, CI/CD with GitHub Actions, unit &amp; integration testing, code review, Agile/Scrum, technical writing</dd></div>
+          <div><dt>AI</dt><dd>Claude, Gemini API, LLM integration, prompt engineering. Certified in Anthropic's Claude 101 and AI Fluency Framework.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <p class="label">About</p>
+      <div class="content">
+        <h2 id="about-h">About me</h2>
+        <div class="about-grid">
+        <div class="prose">
+          <p>I grew up in Hawaii and now live in Seattle. I got into programming because writing a program feels a lot like solving a puzzle. I love working out a solution to a hard problem, especially when it pushes me to think outside the box.</p>
+          <p>I'm looking for full-stack engineering roles, and I'm also open to backend, IT and technical consulting work.</p>
+        </div>
+        <img class="about-photo" src="assets/about.jpg" width="900" height="900" alt="Kevin mid-jump in a mirrored hexagon-patterned room" loading="lazy">
+        </div>
+        <h3 class="label" style="margin:28px 0 16px">Off the clock</h3>
+        <div class="hobbies">
+          <div class="hobby">
+            <span class="tag">Rip City</span>
+            <h3>Basketball</h3>
+            <p>I play pickup when I can and follow the NBA closely. I'm a die-hard Portland Trail Blazers fan.</p>
+          </div>
+          <div class="hobby">
+            <span class="tag">Hands-on</span>
+            <h3>Fixing things</h3>
+            <p>Mostly computers. I check whether old machines are still worth keeping, speed up ones slowed down by runaway processes, and help friends and family who aren't comfortable with tech. An old laptop of mine became my home server. Kitchen cabinets and shelves get fixed too.</p>
+          </div>
+          <div class="hobby">
+            <span class="tag">Player 1</span>
+            <h3>Video games</h3>
+            <p>Valorant, Teamfight Tactics, Destiny 2, Minecraft, Path of Exile and Escape from Tarkov. Strategy and problem solving show up in most of them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <p class="label">Contact</p>
+      <div class="content">
+        <h2 id="contact-h">Let's talk.</h2>
+        <p class="prose muted" style="margin:0 0 16px">I'm looking for full-stack, backend, IT and technical consulting roles. Email is the fastest way to reach me.</p>
+        <div class="contact-rows">
+          <div class="contact-row"><span class="k">Email</span><a class="v" id="email" href="mailto:kevjaredli@gmail.com">kevjaredli@gmail.com</a><button class="copy" id="copy-email" type="button">Copy</button></div>
+          <div class="contact-row"><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/li-kevin-j" target="_blank" rel="noopener">linkedin.com/in/li-kevin-j</a></div>
+          <div class="contact-row"><span class="k">Résumé</span><a class="v" href="assets/KevinLi_Resume.pdf" download="KevinLi_Resume.pdf">KevinLi_Resume.pdf</a></div>
+          <div class="contact-row"><span class="k">GitHub</span><a class="v" href="https://github.com/kevinjli21" target="_blank" rel="noopener">github.com/kevinjli21</a></div>
+          <div class="contact-row"><span class="k">LeetCode</span><a class="v" href="https://leetcode.com/u/kevinjli1123/" target="_blank" rel="noopener">leetcode.com/u/kevinjli1123</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Kevin Li</span><span>Seattle, WA</span></div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copy-email');
+    var email = document.getElementById('email');
+    btn.addEventListener('click', function () {
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(email);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Selected';
+      };
+      try {
+        navigator.clipboard.writeText(email.textContent.trim()).then(done, fallback);
+      } catch (e) { fallback(); }
+    });
+  })();
+</script>
 </body>
 </html>
